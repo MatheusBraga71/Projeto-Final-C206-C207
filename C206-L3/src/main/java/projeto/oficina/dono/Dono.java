@@ -10,7 +10,6 @@ public class Dono {
         this.cpf = cpf;
     }
 
-
     public String getNome() {
         return nome;
     }

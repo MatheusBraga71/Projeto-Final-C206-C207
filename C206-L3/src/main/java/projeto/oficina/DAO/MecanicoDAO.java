@@ -44,6 +44,7 @@ public class MecanicoDAO extends ConnectionDAO{
             pst.setString(2, cpf);
             pst.execute();
             sucesso = true;
+            System.out.println("Nome atualizado!");
 
         } catch(SQLException ex) {
             System.out.println("Erro = " +  ex.getMessage());

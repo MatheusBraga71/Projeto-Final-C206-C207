@@ -1,5 +1,6 @@
 package projeto.oficina.DAO;
 
+import org.w3c.dom.ls.LSOutput;
 import projeto.oficina.dono.Dono;
 
 import java.sql.SQLException;
@@ -45,6 +46,7 @@ public class DonoDAO extends ConnectionDAO {
             pst.setString(2, cpf);
             pst.execute();
             sucesso = true;
+            System.out.println("CPF atualizado!");
 
         } catch(SQLException ex) {
             System.out.println("Erro = " +  ex.getMessage());
@@ -70,30 +72,7 @@ public class DonoDAO extends ConnectionDAO {
             pst.setString(2, cpf);
             pst.execute();
             sucesso = true;
-
-        } catch(SQLException ex) {
-            System.out.println("Erro = " +  ex.getMessage());
-            sucesso = false;
-        } finally {
-            try {
-                con.close();
-                pst.close();
-            } catch(SQLException exc) {
-                System.out.println("Erro: " + exc.getMessage());
-            }
-        }
-        return sucesso;
-    }
-
-    public boolean deletarDono(String cpf) {
-        connectToDB();
-        String sql = "DELETE FROM Dono where cpf=?";
-
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setString(1, cpf);
-            pst.execute();
-            sucesso = true;
+            System.out.println("Nome atualizado!");
 
         } catch(SQLException ex) {
             System.out.println("Erro = " +  ex.getMessage());
@@ -120,8 +99,8 @@ public class DonoDAO extends ConnectionDAO {
             System.out.println("Lista de donos: ");
             while (rs.next()) {
                 Dono donoAux = new Dono(rs.getString("Nome"), rs.getString("cpf"));
-                System.out.println("nome = " + donoAux.getNome());
-                System.out.println("cpf = " + donoAux.getCpf());
+                System.out.println("Nome: " + donoAux.getNome());
+                System.out.println("CPF: " + donoAux.getCpf());
                 System.out.println("--------------------------------");
                 listaDeDonos.add(donoAux);
             }
@@ -138,39 +117,5 @@ public class DonoDAO extends ConnectionDAO {
             }
         }
         return listaDeDonos;
-    }
-    public Dono buscarDonoPorCPF(String cpf) {
-        connectToDB();
-        Dono donoAux = null;
-        String sql = "SELECT * FROM Dono WHERE cpf = ?";
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setString(1, cpf);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                String aux = rs.getString("nome");
-                if(aux.isEmpty())
-                {
-                    sucesso = false;
-                } else {
-                    donoAux = new Dono(rs.getString("nome"), rs.getString("cpf"));
-                    System.out.println("nome = " + donoAux.getNome());
-                    System.out.println("marca = " + donoAux.getCpf());
-                    System.out.println("--------------------------------");
-                }
-            }
-            sucesso = true;
-        } catch(SQLException e) {
-            System.out.println("Erro: " + e.getMessage());
-            sucesso = false;
-        } finally {
-            try {
-                con.close();
-                pst.close();
-            } catch(SQLException e) {
-                System.out.println("Erro: " + e.getMessage());
-            }
-        }
-        return donoAux;
     }
 }

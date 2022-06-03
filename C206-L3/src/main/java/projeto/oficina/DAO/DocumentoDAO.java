@@ -43,6 +43,7 @@ public class DocumentoDAO extends ConnectionDAO {
             pst.setInt(1, renavam);
             pst.execute();
             sucesso = true;
+            System.out.println("Documento excluído do sistema!");
 
         } catch(SQLException ex) {
             System.out.println("Erro = " +  ex.getMessage());

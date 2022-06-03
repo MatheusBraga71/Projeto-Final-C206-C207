@@ -48,6 +48,7 @@ public class CarroHasManutencaoDAO extends ConnectionDAO{
             //pst.setInt(3, numChassi);
             pst.execute();
             sucesso = true;
+            System.out.println("Status da manutenção alterado para: " + status);
 
         } catch(SQLException ex) {
             System.out.println("Erro = " +  ex.getMessage());

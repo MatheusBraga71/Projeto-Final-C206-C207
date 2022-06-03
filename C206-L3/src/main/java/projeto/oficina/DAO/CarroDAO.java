@@ -27,6 +27,8 @@ public class CarroDAO extends ConnectionDAO{
             pst.setString(6, carro.getMecanico_cpf());
             pst.execute();
             sucesso = true;
+            System.out.println("Carro cadastrado no Sistema!");
+
         } catch(SQLException exc) {
             System.out.println("Erro: " + exc.getMessage());
             sucesso = false;
@@ -51,6 +53,7 @@ public class CarroDAO extends ConnectionDAO{
             pst.setInt(2, numeroChassi);
             pst.execute();
             sucesso = true;
+            System.out.println("Cor atualizada! ");
 
         } catch(SQLException ex) {
             System.out.println("Erro = " +  ex.getMessage());
@@ -76,6 +79,7 @@ public class CarroDAO extends ConnectionDAO{
             pst.setInt(2, numeroChassi);
             pst.execute();
             sucesso = true;
+            System.out.println("Modelo atualizado!");
 
         } catch(SQLException ex) {
             System.out.println("Erro = " +  ex.getMessage());
@@ -100,6 +104,7 @@ public class CarroDAO extends ConnectionDAO{
             pst.setInt(1, numeroChassi);
             pst.execute();
             sucesso = true;
+            System.out.println("Carro excluído do Sistema!");
 
         } catch(SQLException ex) {
             System.out.println("Erro = " +  ex.getMessage());
